@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://arjunyadav.design/sitemap.xml
+Sitemap: https://gollaux.com/sitemap.xml
