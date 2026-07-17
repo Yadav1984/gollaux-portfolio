@@ -18,16 +18,9 @@ export default function Contact() {
     setLoading(true)
     
     try {
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(form),
-      })
-
-      if (!response.ok) {
-        throw new Error('Failed to send message')
-      }
-
+      const mailtoLink = `mailto:${personal.email}?subject=${encodeURIComponent(form.subject)}&body=${encodeURIComponent(`Name: ${form.name}\nEmail: ${form.email}\n\nMessage:\n${form.message}`)}`
+      window.location.href = mailtoLink
+      
       setSent(true)
       setForm({ name: '', email: '', subject: '', message: '' })
     } catch (err) {

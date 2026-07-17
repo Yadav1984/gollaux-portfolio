@@ -83,7 +83,7 @@ export default function CaseStudies() {
               {/* Content side */}
               <div className={`p-8 flex flex-col justify-center ${i % 2 === 1 ? 'lg:order-1' : ''}`}>
                 <div className="flex flex-wrap gap-2 mb-4">
-                  {project.tags.map(tag => (
+                  {[project.industry, project.category].map(tag => (
                     <span key={tag} className="text-xs px-2.5 py-1 rounded-full"
                       style={{ background: 'var(--muted-bg)', color: 'var(--muted)' }}>
                       {tag}
@@ -144,19 +144,23 @@ export default function CaseStudies() {
       {/* Detail Modal */}
       <AnimatePresence>
         {selected && (
-          <motion.div
-            className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="absolute inset-0 bg-black/80 backdrop-blur-md" onClick={() => setSelected(null)} />
+          <div className="fixed inset-0 z-[200]">
             <motion.div
-              className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto glass rounded-3xl border border-white/10 shadow-2xl no-scrollbar"
-              initial={{ scale: 0.9, y: 40 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 40 }}
+              className="fixed inset-0 bg-black/80 backdrop-blur-md"
+              initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
+            />
+            <div 
+              className="fixed inset-0 overflow-y-auto" 
+              onClick={() => setSelected(null)}
             >
+              <div className="flex min-h-full items-center justify-center p-4">
+                <motion.div
+                  className="relative w-full max-w-4xl glass rounded-3xl border border-white/10 shadow-2xl overflow-hidden my-8"
+                  initial={{ scale: 0.9, opacity: 0, y: 40 }}
+                  animate={{ scale: 1, opacity: 1, y: 0 }}
+                  exit={{ scale: 0.9, opacity: 0, y: 40 }}
+                  onClick={(e) => e.stopPropagation()}
+                >
               <div className="relative h-64">
                 <Image src={selected.image} alt={selected.title} fill className="object-cover" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
@@ -252,7 +256,9 @@ export default function CaseStudies() {
                 </div>
               </div>
             </motion.div>
-          </motion.div>
+            </div>
+            </div>
+          </div>
         )}
       </AnimatePresence>
     </section>

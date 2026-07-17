@@ -1,16 +1,134 @@
 'use client'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
 import Image from 'next/image'
-import { ExternalLink, BookOpen, Clock, Users, Wrench, TrendingUp, ChevronRight, X, Filter } from 'lucide-react'
+import Link from 'next/link'
+import { Clock, Users, ArrowUpRight } from 'lucide-react'
 import { projects } from '@/lib/data'
 
-const categories = ['All', 'Enterprise SaaS', 'FinTech', 'HealthTech', 'Design System', 'Banking', 'B2B SaaS']
+const categories = ['All', ...Array.from(new Set(projects.map(p => p.category)))]
+
+function ProjectCard({ project, index }: { project: typeof projects[0], index: number }) {
+  const cardRef = useRef<HTMLAnchorElement>(null);
+  const x = useMotionValue(0);
+  const y = useMotionValue(0);
+  
+  const springConfig = { damping: 20, stiffness: 100, mass: 0.5 };
+  const mouseXSpring = useSpring(x, springConfig);
+  const mouseYSpring = useSpring(y, springConfig);
+
+  const handleMouseMove = (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => {
+    if (!cardRef.current) return;
+    const rect = cardRef.current.getBoundingClientRect();
+    const width = rect.width;
+    const height = rect.height;
+    const mouseX = e.clientX - rect.left;
+    const mouseY = e.clientY - rect.top;
+    
+    const rotateX = ((mouseY / height) - 0.5) * -10;
+    const rotateY = ((mouseX / width) - 0.5) * 10;
+    
+    x.set(rotateY);
+    y.set(rotateX);
+  };
+
+  const handleMouseLeave = () => {
+    x.set(0);
+    y.set(0);
+  };
+
+  return (
+    <motion.div
+      layout
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.4, delay: index * 0.05 }}
+      style={{ perspective: 1000 }}
+    >
+      <Link 
+        href={`/projects/${project.slug}`}
+        ref={cardRef}
+        onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
+        className="group relative flex flex-col h-full overflow-hidden rounded-2xl block"
+      >
+        <motion.div 
+          className="relative flex flex-col h-full glass border border-white/10 rounded-2xl overflow-hidden"
+          style={{ 
+            rotateX: mouseYSpring, 
+            rotateY: mouseXSpring,
+            transformStyle: "preserve-3d"
+          }}
+          whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}
+        >
+          {/* Image */}
+          <div className="relative h-56 overflow-hidden">
+            <Image
+              src={project.image}
+              alt={project.title}
+              fill
+              className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+            />
+            {/* Gradient Overlay */}
+            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+            
+            <div className="absolute top-4 left-4" style={{ transform: "translateZ(20px)" }}>
+              <span
+                className="text-xs font-semibold px-3 py-1.5 rounded-full text-white backdrop-blur-md border border-white/20"
+                style={{ background: `${project.color}90` }}
+              >
+                {project.category}
+              </span>
+            </div>
+            
+            {project.featured && (
+              <div className="absolute top-4 right-4 bg-yellow-500/90 backdrop-blur-md border border-yellow-400/50 text-black text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{ transform: "translateZ(20px)" }}>
+                Featured
+              </div>
+            )}
+            
+            {/* Animated Arrow */}
+            <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" style={{ transform: "translateZ(30px)" }}>
+              <ArrowUpRight className="w-5 h-5 text-white group-hover:rotate-45 transition-transform duration-300" />
+            </div>
+          </div>
+
+          <div className="p-6 flex flex-col flex-grow relative z-10 bg-background/50 backdrop-blur-sm" style={{ transform: "translateZ(30px)" }}>
+            <h3 className="font-heading text-xl font-bold mb-2 group-hover:text-primary transition-colors" style={{ color: 'var(--foreground)' }}>
+              {project.title}
+            </h3>
+            <p className="text-sm mb-5 line-clamp-2" style={{ color: 'var(--muted)' }}>{project.description}</p>
+
+            <div className="mt-auto">
+              {/* Impact */}
+              <div className="flex flex-wrap gap-2 mb-5">
+                {project.impact.slice(0, 2).map((imp, j) => (
+                  <span key={j} className="text-xs px-2.5 py-1 rounded-full font-medium"
+                    style={{ background: `${project.color}15`, color: project.color, border: `1px solid ${project.color}30` }}>
+                    {imp}
+                  </span>
+                ))}
+              </div>
+
+              {/* Meta */}
+              <div className="flex items-center justify-between text-xs pt-4 border-t border-white/10" style={{ color: 'var(--muted)' }}>
+                <div className="flex items-center gap-4">
+                  <span className="flex items-center gap-1.5"><Clock className="w-3.5 h-3.5" />{project.duration}</span>
+                  <span className="flex items-center gap-1.5"><Users className="w-3.5 h-3.5" />{project.role}</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </motion.div>
+      </Link>
+    </motion.div>
+  )
+}
 
 export default function Projects() {
   const [activeCategory, setActiveCategory] = useState('All')
-  const [selectedProject, setSelectedProject] = useState<typeof projects[0] | null>(null)
   const { ref, inView } = useInView({ triggerOnce: true, threshold: 0.05 })
 
   const filtered = activeCategory === 'All'
@@ -19,12 +137,12 @@ export default function Projects() {
 
   return (
     <section id="projects" className="section-padding relative">
-      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl" />
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="absolute top-0 left-0 w-96 h-96 bg-accent/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Header */}
         <motion.div
           ref={ref}
-          className="text-center mb-12"
+          className="text-center mb-16"
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6 }}
@@ -40,12 +158,12 @@ export default function Projects() {
         </motion.div>
 
         {/* Filter */}
-        <div className="flex flex-wrap justify-center gap-2 mb-10">
+        <div className="flex flex-wrap justify-center gap-3 mb-12">
           {categories.map(cat => (
             <motion.button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+              className={`px-5 py-2.5 rounded-full text-sm font-semibold transition-all ${
                 activeCategory === cat
                   ? 'bg-primary text-white shadow-lg shadow-primary/25'
                   : 'glass border border-white/10 hover:border-primary/30'
@@ -60,168 +178,14 @@ export default function Projects() {
         </div>
 
         {/* Grid */}
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           <AnimatePresence mode="popLayout">
             {filtered.map((project, i) => (
-              <motion.div
-                key={project.id}
-                layout
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group relative glass border border-white/10 rounded-2xl overflow-hidden card-hover cursor-pointer"
-                onClick={() => setSelectedProject(project)}
-              >
-                {/* Image */}
-                <div className="relative h-48 overflow-hidden">
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent" />
-                  <div className="absolute top-3 left-3">
-                    <span
-                      className="text-xs font-semibold px-2.5 py-1 rounded-full text-white"
-                      style={{ background: project.color }}
-                    >
-                      {project.category}
-                    </span>
-                  </div>
-                  {project.featured && (
-                    <div className="absolute top-3 right-3 bg-yellow-500 text-black text-xs font-bold px-2 py-0.5 rounded-full">
-                      Featured
-                    </div>
-                  )}
-                </div>
-
-                <div className="p-5">
-                  <h3 className="font-heading text-lg font-bold mb-2 group-hover:text-primary transition-colors" style={{ color: 'var(--foreground)' }}>
-                    {project.title}
-                  </h3>
-                  <p className="text-sm mb-4 line-clamp-2" style={{ color: 'var(--muted)' }}>{project.description}</p>
-
-                  {/* Impact */}
-                  <div className="flex flex-wrap gap-1.5 mb-4">
-                    {project.impact.slice(0, 2).map((imp, j) => (
-                      <span key={j} className="text-xs px-2 py-0.5 rounded-full font-medium"
-                        style={{ background: `${project.color}15`, color: project.color }}>
-                        {imp}
-                      </span>
-                    ))}
-                  </div>
-
-                  {/* Meta */}
-                  <div className="flex items-center justify-between text-xs" style={{ color: 'var(--muted)' }}>
-                    <div className="flex items-center gap-3">
-                      <span className="flex items-center gap-1"><Clock className="w-3 h-3" />{project.duration}</span>
-                      <span className="flex items-center gap-1"><Users className="w-3 h-3" />{project.role}</span>
-                    </div>
-                    <ChevronRight className="w-4 h-4 group-hover:text-primary group-hover:translate-x-1 transition-all" />
-                  </div>
-                </div>
-              </motion.div>
+              <ProjectCard key={project.id} project={project} index={i} />
             ))}
           </AnimatePresence>
         </div>
       </div>
-
-      {/* Project Modal */}
-      <AnimatePresence>
-        {selectedProject && (
-          <motion.div
-            className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-          >
-            <div className="absolute inset-0 bg-black/70 backdrop-blur-sm" onClick={() => setSelectedProject(null)} />
-            <motion.div
-              className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto glass rounded-2xl border border-white/10 shadow-2xl no-scrollbar"
-              initial={{ scale: 0.9, y: 30 }}
-              animate={{ scale: 1, y: 0 }}
-              exit={{ scale: 0.9, y: 30 }}
-            >
-              {/* Image */}
-              <div className="relative h-56 sm:h-72">
-                <Image src={selectedProject.image} alt={selectedProject.title} fill className="object-cover" />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
-                <button
-                  onClick={() => setSelectedProject(null)}
-                  className="absolute top-4 right-4 p-2 rounded-xl bg-black/40 backdrop-blur hover:bg-black/60 transition-colors"
-                  aria-label="Close"
-                >
-                  <X className="w-5 h-5 text-white" />
-                </button>
-                <div className="absolute bottom-4 left-5">
-                  <span className="text-xs font-semibold px-3 py-1.5 rounded-full text-white" style={{ background: selectedProject.color }}>
-                    {selectedProject.category}
-                  </span>
-                  <h3 className="font-heading text-2xl font-bold text-white mt-2">{selectedProject.title}</h3>
-                </div>
-              </div>
-
-              <div className="p-6 space-y-6">
-                {/* Meta row */}
-                <div className="flex flex-wrap gap-4 text-sm" style={{ color: 'var(--muted)' }}>
-                  <span className="flex items-center gap-1.5"><Clock className="w-4 h-4 text-primary" />{selectedProject.duration}</span>
-                  <span className="flex items-center gap-1.5"><Users className="w-4 h-4 text-secondary" />{selectedProject.role}</span>
-                  <span className="flex items-center gap-1.5"><Wrench className="w-4 h-4 text-accent" />{selectedProject.team}</span>
-                </div>
-
-                {/* Overview */}
-                <div>
-                  <h4 className="font-heading font-bold mb-2" style={{ color: 'var(--foreground)' }}>Overview</h4>
-                  <p className="text-sm" style={{ color: 'var(--muted)' }}>{selectedProject.description}</p>
-                </div>
-
-                {/* Problem */}
-                <div className="p-4 rounded-xl" style={{ background: 'rgba(239,68,68,0.08)', border: '1px solid rgba(239,68,68,0.15)' }}>
-                  <h4 className="font-heading font-bold text-red-400 mb-2">The Problem</h4>
-                  <p className="text-sm" style={{ color: 'var(--muted)' }}>{selectedProject.problem}</p>
-                </div>
-
-                {/* Impact */}
-                <div>
-                  <h4 className="font-heading font-bold mb-3 flex items-center gap-2" style={{ color: 'var(--foreground)' }}>
-                    <TrendingUp className="w-4 h-4 text-green-400" /> Business Impact
-                  </h4>
-                  <div className="grid sm:grid-cols-3 gap-3">
-                    {selectedProject.impact.map((imp, i) => (
-                      <div key={i} className="p-3 rounded-xl text-center" style={{ background: `${selectedProject.color}15`, border: `1px solid ${selectedProject.color}30` }}>
-                        <p className="text-sm font-semibold" style={{ color: selectedProject.color }}>{imp}</p>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Tools */}
-                <div>
-                  <h4 className="font-heading font-bold mb-3" style={{ color: 'var(--foreground)' }}>Tools Used</h4>
-                  <div className="flex flex-wrap gap-2">
-                    {selectedProject.tools.map(t => (
-                      <span key={t} className="text-xs px-3 py-1.5 rounded-lg" style={{ background: 'var(--muted-bg)', color: 'var(--muted)' }}>{t}</span>
-                    ))}
-                  </div>
-                </div>
-
-                {/* Actions */}
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <a href={selectedProject.liveUrl} className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold text-white bg-gradient-to-r from-primary to-secondary">
-                    <ExternalLink className="w-4 h-4" /> Live Demo
-                  </a>
-                  <a href={selectedProject.caseStudyUrl} className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold glass border border-white/10"
-                    style={{ color: 'var(--foreground)' }}>
-                    <BookOpen className="w-4 h-4" /> Case Study
-                  </a>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </section>
   )
 }
