@@ -469,7 +469,7 @@ export const testimonials = [
     company: 'Infosys BPM',
     avatar: 'https://ui-avatars.com/api/?name=Priya+Sharma&background=2563EB&color=fff&bold=true',
     rating: 5,
-    text: "Arjun doesn't just design interfaces — he designs outcomes. His ability to translate ambiguous business problems into elegant, measurable user experiences is something I've rarely seen in 20 years of product leadership. He elevated our entire product culture.",
+    text: "Golla doesn't just design interfaces — he designs outcomes. His ability to translate ambiguous business problems into elegant, measurable user experiences is something I've rarely seen in 20 years of product leadership. He elevated our entire product culture.",
   },
   {
     id: 't2',
@@ -478,7 +478,7 @@ export const testimonials = [
     company: 'Razorpay',
     avatar: 'https://ui-avatars.com/api/?name=Rahul+Mehta&background=7C3AED&color=fff&bold=true',
     rating: 5,
-    text: "Working with Arjun transformed how our engineering team thinks about user experience. He bridged the gap between design and engineering in ways I hadn't thought possible. The merchant dashboard he designed became our biggest competitive differentiator.",
+    text: "Working with Golla transformed how our engineering team thinks about user experience. He bridged the gap between design and engineering in ways I hadn't thought possible. The merchant dashboard he designed became our biggest competitive differentiator.",
   },
   {
     id: 't3',
@@ -487,7 +487,7 @@ export const testimonials = [
     company: 'Practo',
     avatar: 'https://ui-avatars.com/api/?name=Kavya+Reddy&background=06B6D4&color=fff&bold=true',
     rating: 5,
-    text: "Arjun has a rare gift for making complex healthcare UX feel simple and human. He spent weeks in the field with patients and doctors before touching Figma. That research rigor and empathy resulted in a 4.8-star app used by millions.",
+    text: "Golla has a rare gift for making complex healthcare UX feel simple and human. He spent weeks in the field with patients and doctors before touching Figma. That research rigor and empathy resulted in a 4.8-star app used by millions.",
   },
   {
     id: 't4',
@@ -496,7 +496,7 @@ export const testimonials = [
     company: 'FinServ India',
     avatar: 'https://ui-avatars.com/api/?name=Ankit+Joshi&background=22C55E&color=fff&bold=true',
     rating: 5,
-    text: "I've worked with many designers. Arjun stands apart because he thinks like a business strategist and designs like an artist. He owned our onboarding funnel redesign end-to-end and the results — 45% drop-off reduction — speak for themselves.",
+    text: "I've worked with many designers. Golla stands apart because he thinks like a business strategist and designs like an artist. He owned our onboarding funnel redesign end-to-end and the results — 45% drop-off reduction — speak for themselves.",
   },
   {
     id: 't5',
@@ -505,7 +505,7 @@ export const testimonials = [
     company: 'Infosys BPM',
     avatar: 'https://ui-avatars.com/api/?name=Shruti+Kapoor&background=F59E0B&color=fff&bold=true',
     rating: 5,
-    text: "Arjun mentored three designers on my team, and each one grew dramatically under his guidance. He creates psychological safety, gives precise feedback, and leads with incredible humility. He's the kind of design leader every team deserves.",
+    text: "Golla mentored three designers on my team, and each one grew dramatically under his guidance. He creates psychological safety, gives precise feedback, and leads with incredible humility. He's the kind of design leader every team deserves.",
   },
   {
     id: 't6',
@@ -514,7 +514,7 @@ export const testimonials = [
     company: 'Razorpay',
     avatar: 'https://ui-avatars.com/api/?name=Vikram+Singh&background=EF4444&color=fff&bold=true',
     rating: 5,
-    text: "The Blade Design System Arjun built became the foundation of Razorpay's product quality. His documentation, component architecture, and developer handoff process were world-class. Engineering loved working with him because he understood code constraints.",
+    text: "The Blade Design System Golla built became the foundation of Razorpay's product quality. His documentation, component architecture, and developer handoff process were world-class. Engineering loved working with him because he understood code constraints.",
   },
 ];
 
