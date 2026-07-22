@@ -10,6 +10,7 @@ import Footer from '@/components/layout/Footer'
 import Hero from '@/components/sections/Hero'
 import About from '@/components/sections/About'
 import Experience from '@/components/sections/Experience'
+import Leadership from '@/components/sections/Leadership'
 import Projects from '@/components/sections/Projects'
 import CaseStudies from '@/components/sections/CaseStudies'
 import Skills from '@/components/sections/Skills'
@@ -40,6 +41,7 @@ export default function Home() {
       <Hero />
       <About />
       <Experience />
+      <Leadership />
       <Projects />
       <CaseStudies />
       <Skills />

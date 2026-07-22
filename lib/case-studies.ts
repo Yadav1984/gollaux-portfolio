@@ -101,6 +101,37 @@ export interface CaseStudy {
     challenges: string[];
     futureImprovements: string[];
   };
+  collaboration: {
+    role: string;
+    description: string;
+  }[];
+  designSystemDetails?: {
+    overview: {
+      whyItMatters: string;
+      contribution: string;
+      governance: string;
+      collaborationModel: string;
+    };
+    components: string[];
+    foundations: string[];
+    process: {
+      componentCreation: string;
+      documentation: string;
+      versioning: string;
+      developerHandoff: string;
+      designQA: string;
+      crossTeamAdoption: string;
+      figmaLibraries: string;
+      governance: string;
+    };
+    impact: {
+      improvedConsistency: string;
+      reducedDesignDebt: string;
+      acceleratedDelivery: string;
+      improvedCollaboration: string;
+      enabledScalability: string;
+    };
+  };
   finalDesignImage?: string;
 }
 
@@ -247,6 +278,45 @@ export const caseStudies: Record<string, CaseStudy> = {
         'Expand the component library to cover native mobile apps (React Native).'
       ],
     },
+        collaboration: [
+      { role: 'Product Managers', description: 'Aligned on release schedules and prioritized component build order based on feature roadmaps.' },
+      { role: 'Front-end Engineers', description: 'Paired extensively to ensure Figma tokens mapped 1:1 with React components and CSS variables.' },
+      { role: 'QA Teams', description: 'Defined visual regression testing standards and accessibility compliance checklists.' }
+    ],
+        designSystemDetails: {
+      overview: {
+        whyItMatters: "Design systems are the connective tissue of enterprise software. They ensure visual consistency, reduce technical debt, and allow product teams to focus on solving user problems rather than reinventing UI components.",
+        contribution: "I led the initial audit, established the foundational tokens (colors, typography, spacing), and architected the Figma component library used by 50+ designers.",
+        governance: "Established a federated governance model where core components are strictly managed by the DS team, while pattern recipes can be contributed by local product teams.",
+        collaborationModel: "Weekly syncs with engineering leads to ensure Figma tokens mapped perfectly to React props, and monthly 'guild' meetings to train designers on library updates."
+      },
+      components: [
+        'Buttons', 'Inputs', 'Tables', 'Cards', 'Navigation', 'Modals', 'Dropdowns', 
+        'Charts', 'Forms', 'Data Tables', 'Pagination', 'Icons', 'Tooltips', 
+        'Empty States', 'Notifications', 'Loaders'
+      ],
+      foundations: [
+        'Typography', 'Spacing', 'Grid', 'Elevation', 'Border Radius', 'Colors', 
+        'Accessibility', 'Motion', 'Dark Mode', 'Design Tokens', 'Variables'
+      ],
+      process: {
+        componentCreation: "Every component begins with a functional spec, followed by accessibility testing, state mapping, and stress-testing with edge-case data.",
+        documentation: "Used Zeroheight to document usage guidelines, do's/don'ts, and accessibility requirements for both design and engineering.",
+        versioning: "Implemented semantic versioning for the Figma library to ensure updates didn't break existing product files unexpectedly.",
+        developerHandoff: "Figma Variables were automatically synced to GitHub via token transformer scripts, removing manual redlining.",
+        designQA: "Created a dedicated 'playground' environment to test coded components against Figma designs before release.",
+        crossTeamAdoption: "Onboarded teams module-by-module, providing hands-on pairing sessions to replace legacy components with new DS equivalents.",
+        figmaLibraries: "Split the system into Core Foundations, Components, and Iconography to optimize Figma file performance and loading times.",
+        governance: "A strict intake process for new component requests, evaluated against reusability and strategic alignment."
+      },
+      impact: {
+        improvedConsistency: "Unified the visual language across 8 previously siloed products, creating a seamless experience for end-users.",
+        reducedDesignDebt: "Eliminated over 200 duplicate components in Figma, significantly reducing maintenance overhead.",
+        acceleratedDelivery: "Front-end engineering velocity increased by 40% due to the plug-and-play nature of the React component library.",
+        improvedCollaboration: "Bridged the gap between design and engineering, creating a shared vocabulary (tokens) that both disciplines understand.",
+        enabledScalability: "The system laid the groundwork for rapid acquisition integration, allowing new products to be reskinned in weeks rather than months."
+      }
+    },
     finalDesignImage: '/hpe-design-system.jpg',
   },
   
@@ -385,6 +455,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Balancing the need for detailed data with executive summary views.', 'Navigating strict enterprise data security constraints during user research.'],
       futureImprovements: ['Incorporate predictive AI to forecast risk trends based on historical data.', 'Develop a companion mobile app for on-the-go executives.'],
     },
+        collaboration: [
+      { role: 'Subject Matter Experts (Risk Officers)', description: 'Conducted weekly co-design sessions to validate complex compliance workflows.' },
+      { role: 'Data Engineers', description: 'Collaborated on data payload structures to ensure the UI rendered massive datasets without latency.' },
+      { role: 'Product Managers', description: 'Negotiated MVP scope to deliver critical audit features ahead of regulatory deadlines.' }
+    ],
     finalDesignImage: '/grc1.jpg',
   },
   
@@ -522,6 +597,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Designing a robust charting library that works in both light and dark modes.', 'Handling empty states elegantly when data sources are still syncing.'],
       futureImprovements: ['Introduce collaborative features like inline commenting on specific data points.', 'Build an AI query assistant.'],
     },
+        collaboration: [
+      { role: 'Founders/Business Teams', description: 'Translated high-level business goals into specific actionable KPI dashboard templates.' },
+      { role: 'Full-stack Developers', description: 'Worked closely on the drag-and-drop grid engine to ensure smooth interactions.' },
+      { role: 'UX Researchers', description: 'Partnered to run unmoderated testing sessions on the new widget builder flow.' }
+    ],
     finalDesignImage: '/SaaS_dashboard.png',
   },
   
@@ -651,6 +731,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Learning complex storage networking concepts quickly to design effectively.', 'Designing for edge cases where hardware fails catastrophically.'],
       futureImprovements: ['Integrate generative AI to suggest optimal storage tiering based on usage patterns.'],
     },
+        collaboration: [
+      { role: 'Storage Architects', description: 'Demystified complex hardware topologies to create accurate logical UI representations.' },
+      { role: 'HPE Global Design Team', description: 'Contributed new storage-specific patterns back to the global HPE GreenLake design system.' },
+      { role: 'Technical Writers', description: 'Co-wrote in-app tooltips and contextual help documentation for advanced settings.' }
+    ],
     finalDesignImage: '/HPE.png',
   },
   
@@ -788,6 +873,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Designing for legacy hardware (e.g., 1024x768 resolution monitors in rural offices).', 'Navigating bureaucratic approval processes for UI changes.'],
       futureImprovements: ['Implement an AI chatbot for citizens to register complaints via WhatsApp directly into the dashboard.'],
     },
+        collaboration: [
+      { role: 'Government Officials', description: 'Navigated bureaucratic approvals and presented designs to District Collectors.' },
+      { role: 'Call Center Operators', description: 'Shadowed operators for 3 days to understand their keyboard-driven workflows.' },
+      { role: 'Engineering Lead', description: 'Ensured the UI could degrade gracefully on legacy hardware and slow internet connections.' }
+    ],
     finalDesignImage: '/104_dashboard.png',
   },
   
@@ -916,6 +1006,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Navigating the strict compliance requirements of SEBI/SEC regarding how returns can be visualized.'],
       futureImprovements: ['Introduce social features allowing users to follow top-performing public portfolios.'],
     },
+        collaboration: [
+      { role: 'Financial Analysts', description: 'Validated the accuracy of portfolio growth visualizations and terminology.' },
+      { role: 'Mobile Dev Team', description: 'Created detailed interaction specs for chart animations and gesture-based navigation.' },
+      { role: 'Compliance/Legal', description: 'Iterated on disclaimers and consent flows to meet financial regulatory requirements.' }
+    ],
     finalDesignImage: '/WealthGrow.png',
   },
 
@@ -1052,6 +1147,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Handling the edge cases of calendar syncing (e.g., Daylight Savings Time changes across different hemispheres).'],
       futureImprovements: ['Implement an interactive whiteboard within the video classroom feature.'],
     },
+        collaboration: [
+      { role: 'Educators & Tutors', description: 'Held focus groups to define the must-have features for the virtual classroom interface.' },
+      { role: 'Product Managers', description: 'Prioritized the booking flow over advanced analytics for the MVP launch.' },
+      { role: 'QA Automation', description: 'Provided edge-case user flows to help build the end-to-end testing suite.' }
+    ],
     finalDesignImage: '/NovaTutor1.png',
   },
 
@@ -1180,6 +1280,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Designing around the limitations and latency of third-party banking APIs (Plaid).'],
       futureImprovements: ['Add shared budgets for couples.'],
     },
+        collaboration: [
+      { role: 'Behavioral Economists', description: 'Consulted on gamification strategies to encourage positive saving habits.' },
+      { role: 'iOS/Android Devs', description: 'Ensured native design patterns were respected while maintaining core brand identity.' },
+      { role: 'Marketing Team', description: 'Designed empty states and onboarding screens that aligned with acquisition campaigns.' }
+    ],
     finalDesignImage: '/budgetbridge.png',
   },
 
@@ -1308,6 +1413,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Integrating modern e-commerce UX with a legacy AS400 ERP backend.'],
       futureImprovements: ['Implement predictive maintenance alerts within the customer portal.'],
     },
+        collaboration: [
+      { role: 'B2B Sales Team', description: 'Incorporated feedback from sales calls regarding contractor friction during checkout.' },
+      { role: 'Inventory Managers', description: 'Mapped out edge cases for equipment availability and complex pricing tiers.' },
+      { role: 'Backend Developers', description: 'Aligned UI loading states with API response times for inventory checks.' }
+    ],
     finalDesignImage: '/yancey_rentals.png',
   },
 
@@ -1444,6 +1554,11 @@ export const caseStudies: Record<string, CaseStudy> = {
       challenges: ['Designing a submission form that is completely idiot-proof for developers who have been awake for 48 hours.'],
       futureImprovements: ['Integrate GitHub API to automatically pull commit activity as a metric for judging.'],
     },
+        collaboration: [
+      { role: 'Event Organizers', description: 'Iterated on the judging dashboard during a live mock-event to test usability under pressure.' },
+      { role: 'Sponsors/Business', description: 'Integrated sponsor branding organically without compromising the participant experience.' },
+      { role: 'Web Developers', description: 'Used Zeplin for rapid handoff, cutting development time by 2 weeks.' }
+    ],
     finalDesignImage: '/Hackathon.png',
   }
 };

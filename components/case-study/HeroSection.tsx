@@ -15,11 +15,11 @@ interface HeroProps {
 
 export default function HeroSection({ hero }: { hero: HeroProps }) {
   return (
-    <section className="relative pt-32 pb-20 overflow-hidden">
+    <section className="relative pt-8 pb-20 overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-full bg-grid-white/[0.02] bg-[length:32px_32px] pointer-events-none" />
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-primary/20 rounded-full blur-[120px] pointer-events-none" />
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <Link 
           href="/#projects" 
           className="inline-flex items-center gap-2 text-sm text-muted-foreground hover:text-primary transition-colors mb-8 group"

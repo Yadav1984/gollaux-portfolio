@@ -46,6 +46,8 @@ export const metadata: Metadata = {
   },
 }
 
+import MotionProvider from '@/components/providers/MotionProvider'
+
 export default function RootLayout({
   children,
 }: {
@@ -82,7 +84,9 @@ export default function RootLayout({
         style={{ fontFamily: 'var(--font-body), Inter, sans-serif' }}
         suppressHydrationWarning
       >
-        {children}
+        <MotionProvider>
+          {children}
+        </MotionProvider>
       </body>
     </html>
   )

@@ -1,7 +1,7 @@
 'use client'
 import { motion } from 'framer-motion'
 import { Layers } from 'lucide-react'
-import Image from 'next/image'
+import RevealImage from '@/components/ui/RevealImage'
 
 interface FinalDesignsProps {
   finalDesignImage?: string;
@@ -35,23 +35,25 @@ export default function FinalDesignsSection({ finalDesignImage }: FinalDesignsPr
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-100px" }}
           transition={{ duration: 0.8 }}
-          className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-3xl overflow-hidden glass border border-white/10 shadow-2xl flex items-center justify-center group"
+          className="relative w-full aspect-[16/9] md:aspect-[21/9] rounded-2xl overflow-hidden border border-white/10 shadow-2xl group"
         >
           {finalDesignImage ? (
-            <Image 
+            <RevealImage 
               src={finalDesignImage} 
-              alt="Final Design Mockups" 
-              fill 
-              className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out" 
+              alt="Final Design Showcase" 
+              fill
+              wrapperClassName="absolute inset-0"
+              className="object-cover group-hover:scale-105 transition-transform duration-1000 ease-out"
             />
           ) : (
             <>
               <div className="absolute inset-0 bg-gradient-to-br from-background via-background/80 to-primary/20" />
               
-              <Image 
-                src="https://images.unsplash.com/photo-1618761714954-0b8cd0026356?w=1600&q=80" 
-                alt="Final Design Mockups Placeholder" 
-                fill 
+              <RevealImage 
+                src="/hpe-design-system.jpg" 
+                alt="Final Design" 
+                fill
+                wrapperClassName="absolute inset-0"
                 className="object-cover opacity-20 mix-blend-overlay group-hover:scale-105 transition-transform duration-1000 ease-out" 
               />
               

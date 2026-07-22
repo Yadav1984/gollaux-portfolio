@@ -139,9 +139,9 @@ export default function Hero() {
                 <TypeAnimation
                   sequence={[
                     'Lead UI/UX Designer', 2500,
-                    'Enterprise Product Designer', 2500,
-                    'UX Strategist', 2500,
-                    'Design System Architect', 2500,
+                    'Senior Product Designer', 2500,
+                    'Principal Designer', 2500,
+                    'UX Manager', 2500,
                   ]}
                   repeat={Infinity}
                   speed={50}
@@ -198,6 +198,26 @@ export default function Hero() {
                 <Mail className="w-4 h-4" />
                 Contact Me
               </motion.button>
+            </motion.div>
+
+            {/* Trust Indicators / Expertise */}
+            <motion.div
+              className="flex flex-wrap items-center gap-2 mb-8"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.6, delay: 0.4 }}
+            >
+              {[
+                'Enterprise SaaS',
+                'Cloud Platforms',
+                'Healthcare Products',
+                'Design Systems',
+                'Cross-functional Leadership'
+              ].map((tag) => (
+                <span key={tag} className="px-3 py-1 text-xs font-medium rounded-full glass border border-white/10" style={{ color: 'var(--foreground)' }}>
+                  {tag}
+                </span>
+              ))}
             </motion.div>
 
             {/* Social links */}
@@ -264,7 +284,7 @@ export default function Hero() {
             >
               <div className="flex items-center gap-2">
                 <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                <span className="text-xs font-semibold" style={{ color: 'var(--foreground)' }}>14+ Years</span>
+                <span className="text-xs font-semibold" style={{ color: 'var(--foreground)' }}>14+ Years Exp.</span>
               </div>
             </motion.div>
 
@@ -273,8 +293,8 @@ export default function Hero() {
               animate={{ y: [0, 8, 0] }}
               transition={{ duration: 3.5, repeat: Infinity, ease: 'easeInOut', delay: 0.5 }}
             >
-              <div className="text-xs font-semibold" style={{ color: 'var(--foreground)' }}>100+ Projects</div>
-              <div className="text-xs" style={{ color: 'var(--muted)' }}>Delivered</div>
+              <div className="text-xs font-semibold" style={{ color: 'var(--foreground)' }}>End-to-End</div>
+              <div className="text-xs" style={{ color: 'var(--muted)' }}>Product Design</div>
             </motion.div>
 
             <motion.div
@@ -282,7 +302,7 @@ export default function Hero() {
               animate={{ y: [0, -6, 0] }}
               transition={{ duration: 4, repeat: Infinity, ease: 'easeInOut', delay: 1 }}
             >
-              <div className="text-xs font-semibold gradient-text">Lead Designer</div>
+              <div className="text-xs font-semibold gradient-text">UX Strategy</div>
             </motion.div>
           </motion.div>
         </div>

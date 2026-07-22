@@ -14,7 +14,7 @@ export default function OutcomeSection({ caseStudy }: OutcomeProps) {
     <section className="py-20 border-t border-white/5 relative">
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full h-[500px] bg-gradient-to-b from-primary/5 to-transparent pointer-events-none" />
       
-      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -25,7 +25,7 @@ export default function OutcomeSection({ caseStudy }: OutcomeProps) {
             <div className="inline-flex items-center justify-center w-16 h-16 rounded-2xl bg-gradient-to-br from-primary to-secondary mb-6 shadow-xl shadow-primary/20">
               <Trophy className="w-8 h-8 text-gray-700 dark:text-white" />
             </div>
-            <h2 className="text-4xl font-heading font-bold mb-6">Final Outcome & Impact</h2>
+            <h2 className="text-4xl font-heading font-bold mb-6">5. Results & Business Impact</h2>
             <p className="text-lg text-muted-foreground max-w-2xl mx-auto leading-relaxed">
               {businessImpact.summary}
             </p>
@@ -54,7 +54,7 @@ export default function OutcomeSection({ caseStudy }: OutcomeProps) {
             <div className="p-8 rounded-3xl bg-white/5 border border-white/10">
               <div className="flex items-center gap-3 mb-6">
                 <Lightbulb className="w-6 h-6 text-yellow-500" />
-                <h3 className="text-xl font-bold">Key Learnings</h3>
+                <h3 className="text-xl font-bold">Lessons Learned</h3>
               </div>
               <ul className="space-y-4">
                 {learnings.challenges.map((challenge, i) => (

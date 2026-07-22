@@ -5,7 +5,7 @@ export const personal = {
   tagline: 'Lead UI/UX Designer | Enterprise Product Design | Design Systems | UX Strategy',
   headline: ['Lead UI/UX Designer', 'Enterprise Product Designer', 'UX Strategist', 'Design System Architect'],
   subheading:
-    'Creating enterprise products that solve complex business problems through user-centered design, strategic thinking, and cross-functional leadership.',
+    'Lead UI/UX Designer crafting enterprise digital experiences that simplify complex workflows through scalable design systems, UX strategy, and user-centered product thinking.',
   email: 'swamygolla1984@gmail.com',
   phone: '+91 9502056553',
   location: 'Bengaluru, India',
@@ -220,7 +220,7 @@ export const projects = [
     team: '3 Designers, 8 Engineers, 2 PMs',
     impact: ['↓ 50% task time', '↑ 35% productivity', '0 missed audits'],
     tools: ['Figma', 'UserTesting', 'Highcharts'],
-    image: '/grc.jpg',
+    image: '/grc1.jpg',
     color: '#7C3AED',
     featured: true,
     liveUrl: '#',
@@ -325,7 +325,7 @@ export const projects = [
     team: '1 Designer, 4 Engineers',
     impact: ['↑ 150% tutor bookings', '↓ 20% bounce rate', '↑ 40% retention'],
     tools: ['Figma', 'Notion', 'UserTesting'],
-    image: '/NovaTutor.png',
+    image: '/NovaTutor1.png',
     color: '#8B5CF6',
     featured: false,
     liveUrl: '#',
@@ -694,7 +694,7 @@ export const blogPosts = [
     readTime: '8 min read',
     date: 'June 2024',
     description: 'What makes enterprise UX fundamentally different from consumer product design — and how to succeed in both complex organizational dynamics and user expectations.',
-    image: 'https://images.unsplash.com/photo-1552664730-d307ca884978?w=600&q=80',
+    image: '/hpe-design-system.jpg',
     color: '#2563EB',
     tags: ['Enterprise UX', 'Scale', 'Product Design'],
   },
@@ -705,7 +705,7 @@ export const blogPosts = [
     readTime: '6 min read',
     date: 'May 2024',
     description: 'How AI tools like Midjourney, GitHub Copilot, and Galileo AI are changing the design workflow — and what remains irreducibly human.',
-    image: 'https://images.unsplash.com/photo-1677442135703-1787eea5ce01?w=600&q=80',
+    image: '/SaaS_dashboard.png',
     color: '#7C3AED',
     tags: ['AI', 'Future of Design', 'Tools'],
   },
@@ -716,7 +716,7 @@ export const blogPosts = [
     readTime: '10 min read',
     date: 'April 2024',
     description: 'A practical guide to creating documentation, component APIs, and collaboration processes that make your design system the team\'s favorite tool.',
-    image: 'https://images.unsplash.com/photo-1545235617-9465d2a55698?w=600&q=80',
+    image: '/budgetbridge.png',
     color: '#06B6D4',
     tags: ['Design System', 'Engineering', 'Collaboration'],
   },
@@ -727,7 +727,7 @@ export const blogPosts = [
     readTime: '7 min read',
     date: 'March 2024',
     description: 'Why treating accessibility as a sprint ticket instead of a design principle is costing companies users, trust, and legal compliance.',
-    image: 'https://images.unsplash.com/photo-1573164713988-8665fc963095?w=600&q=80',
+    image: '/grc.jpg',
     color: '#22C55E',
     tags: ['Accessibility', 'Inclusive Design', 'WCAG'],
   },
@@ -738,7 +738,7 @@ export const blogPosts = [
     readTime: '9 min read',
     date: 'February 2024',
     description: 'Moving beyond vanity metrics to the UX KPIs that create genuine business impact — HEART framework, task success rates, and emotional quality scores.',
-    image: 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=600&q=80',
+    image: '/yancey_rentals.png',
     color: '#F59E0B',
     tags: ['UX Metrics', 'Data', 'Strategy'],
   },
@@ -749,8 +749,50 @@ export const blogPosts = [
     readTime: '11 min read',
     date: 'January 2024',
     description: 'The honest, often uncomfortable transitions required to move from great individual designer to great design leader — and how to navigate them with intention.',
-    image: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?w=600&q=80',
+    image: '/NovaTutor.png',
     color: '#EF4444',
     tags: ['Leadership', 'Career', 'Team Management'],
   },
 ];
+
+export const leadership = {
+  intro: "As a Lead UI/UX Designer, I believe that great products are built by empowered teams. My approach balances high-level strategic vision with hands-on craft, ensuring alignment across design, engineering, and business stakeholders.",
+  pillars: [
+    {
+      id: "mentorship",
+      title: "Team Leadership & Mentorship",
+      icon: "Users2",
+      color: "#3B82F6",
+      items: [
+        "Mentored 2 to 10 junior and mid-level designers, guiding them through complex problem-solving and career progression.",
+        "Facilitated weekly design critiques to elevate the craft and establish a culture of constructive, ego-free feedback.",
+        "Created standardized onboarding playbooks and design principles to align distributed design teams.",
+        "Conducted 1:1 coaching sessions focusing on both technical skills (Figma, Systems) and soft skills (Stakeholder Management)."
+      ]
+    },
+    {
+      id: "strategy",
+      title: "Strategic Collaboration",
+      icon: "Briefcase",
+      color: "#8B5CF6",
+      items: [
+        "Partnered directly with Product Managers and Engineering Directors to define product roadmaps and feature prioritization.",
+        "Managed complex stakeholder expectations across global regions, translating business requirements into user-centric solutions.",
+        "Conducted quarterly UX workshops with C-suite leadership to secure buy-in for major architectural redesigns.",
+        "Bridged the gap between qualitative user research and quantitative business metrics to drive product decisions."
+      ]
+    },
+    {
+      id: "agile",
+      title: "Process & Agile Ceremonies",
+      icon: "Workflow",
+      color: "#10B981",
+      items: [
+        "Integrated UX seamlessly into 2-week agile sprints, ensuring design was never a bottleneck for engineering.",
+        "Led sprint planning, backlog grooming, and capacity planning from a design perspective.",
+        "Defined strict 'Definition of Ready' (DoR) and 'Definition of Done' (DoD) criteria for engineering handoffs.",
+        "Championed cross-functional design reviews to ensure technical feasibility early in the exploration phase."
+      ]
+    }
+  ]
+};

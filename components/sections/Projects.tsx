@@ -2,8 +2,9 @@
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useMotionValue, useSpring } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Image from 'next/image'
+import RevealImage from '@/components/ui/RevealImage'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Clock, Users, ArrowUpRight } from 'lucide-react'
 import { projects } from '@/lib/data'
 
@@ -64,31 +65,29 @@ function ProjectCard({ project, index }: { project: typeof projects[0], index: n
           whileHover={{ y: -8, boxShadow: '0 25px 50px -12px rgba(0, 0, 0, 0.5)' }}
         >
           {/* Image */}
-          <div className="relative h-56 overflow-hidden">
+          <div className="relative h-44 overflow-hidden">
             <Image
               src={project.image}
               alt={project.title}
               fill
-              className="object-cover group-hover:scale-110 transition-transform duration-700 ease-out"
+              unoptimized
+              className="object-cover object-top group-hover:scale-105 transition-transform duration-500"
             />
-            {/* Gradient Overlay */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent opacity-80 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent" />
             
-            <div className="absolute top-4 left-4" style={{ transform: "translateZ(20px)" }}>
-              <span
-                className="text-xs font-semibold px-3 py-1.5 rounded-full text-white backdrop-blur-md border border-white/20"
-                style={{ background: `${project.color}90` }}
-              >
-                {project.category}
-              </span>
-            </div>
-            
+            {/* Category Tag */}
+            <span 
+              className="absolute bottom-3 left-3 text-xs font-semibold px-2.5 py-1 rounded-full text-white"
+              style={{ background: project.color }}
+            >
+              {project.category}
+            </span>
+
             {project.featured && (
               <div className="absolute top-4 right-4 bg-yellow-500/90 backdrop-blur-md border border-yellow-400/50 text-black text-xs font-bold px-3 py-1.5 rounded-full shadow-lg" style={{ transform: "translateZ(20px)" }}>
                 Featured
               </div>
             )}
-            
             {/* Animated Arrow */}
             <div className="absolute bottom-4 right-4 w-10 h-10 rounded-full bg-white/10 backdrop-blur-md border border-white/20 flex items-center justify-center opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300" style={{ transform: "translateZ(30px)" }}>
               <ArrowUpRight className="w-5 h-5 text-white group-hover:rotate-45 transition-transform duration-300" />

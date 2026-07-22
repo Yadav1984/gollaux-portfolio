@@ -1,8 +1,9 @@
 'use client'
 import { useState } from 'react'
+import Image from 'next/image'
 import { motion, AnimatePresence } from 'framer-motion'
 import { useInView } from 'react-intersection-observer'
-import Image from 'next/image'
+import RevealImage from '@/components/ui/RevealImage'
 import {
   Target, Search, Users, Map, LayoutGrid, Layers, TestTube2,
   RefreshCw, TrendingUp, Lightbulb, X, ChevronRight, BarChart2, ArrowRight
@@ -62,12 +63,13 @@ export default function CaseStudies() {
               onClick={() => setSelected(project)}
             >
               {/* Image side */}
-              <div className={`relative h-64 lg:h-auto ${i % 2 === 1 ? 'lg:order-2' : ''}`}>
+              <div className="relative h-64 overflow-hidden rounded-t-2xl lg:h-auto">
                 <Image
                   src={project.image}
                   alt={project.title}
                   fill
-                  className="object-cover group-hover:scale-105 transition-transform duration-700"
+                  unoptimized
+                  className="object-cover object-top rounded-2xl group-hover:scale-105 transition-transform duration-700"
                 />
                 <div className="absolute inset-0 bg-gradient-to-r from-black/50 via-transparent to-transparent" />
                 <div className="absolute top-4 left-4">
@@ -162,7 +164,7 @@ export default function CaseStudies() {
                   onClick={(e) => e.stopPropagation()}
                 >
               <div className="relative h-64">
-                <Image src={selected.image} alt={selected.title} fill className="object-cover" />
+                <Image src={selected.image} alt={selected.title} fill unoptimized className="object-cover object-top" />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/40 to-transparent" />
                 <button
                   onClick={() => setSelected(null)}
